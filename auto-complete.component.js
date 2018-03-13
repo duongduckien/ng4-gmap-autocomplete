@@ -63,6 +63,11 @@ var AutoCompleteComponent = (function () {
     //function called when there is a change in input. (Binded with view)
     AutoCompleteComponent.prototype.searchinputCallback = function (event) {
         var inputVal = this.locationInput;
+
+        if (inputVal === '') {
+            this.componentCallback.emit({ 'response': false, 'data': '' });
+        }
+        
         if ((event.keyCode === 40) || (event.keyCode === 38) || (event.keyCode === 13)) {
             this.navigateInList(event.keyCode);
         }
